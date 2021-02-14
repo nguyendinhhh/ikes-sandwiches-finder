@@ -41,6 +41,9 @@ function App() {
     sauces: [],
   });
 
+  const [preferences, setPreferences] = useState([]);
+
+
 
   // const [data, setData] = useState([]);
   // const [testData, setTestData] = useState([]);
@@ -86,6 +89,8 @@ function App() {
       <Slider>
         <GlobalStyle />
         <PreferenceBar
+          preferences={preferences}
+          setPreferences={setPreferences}
           preferenceList={preferenceList}
           setPreferenceList={setPreferenceList}
           chosenProtein={chosenProtein}

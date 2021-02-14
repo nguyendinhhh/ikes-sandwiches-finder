@@ -7,59 +7,87 @@ const Sandos = ( {preferenceList, chosenProtein, chosenCheese, chosenSauce} ) =>
     const [show, setShow] = useState(false);
     const [value, setValue] = useState([]);
 
-    const checkProtein = (protein) => {
-        let arr = protein.split(",");
+    const checkProtein = (array) => {
+
         for (let i = 0; i < chosenProtein.length; i++){
-            if (protein.includes(chosenProtein[i]))
-                return true;
+            const item = chosenProtein[i];
+            if (array.includes(item)) return true;
         }
-        // if (protein === chosenProtein) { return true; }
+
+        // if (proteins.indexOf(',') > -1) {
+        //     let arr = proteins.split(",");
+        //     for (let i = 0; i < chosenProtein.length; i++) {
+        //         if (arr.includes(chosenProtein[i]))
+        //             return true;
+        //     }
+        // } else if (chosenProtein.includes(protein)) return true;
+        
         return false;
     }
 
-    const checkCheese = (cheeses) => {    
-        let arr = cheeses.split(",");
-        // console.log(arr);
-        for (let i = 0; i < chosenCheese.length; i++) {
-            if (cheeses.includes(chosenCheese[i]))
-                return true;
+    const checkCheese = (array) => {
+        for (let i = 0; i < chosenCheese.length; i++){
+            const item = chosenProtein[i];
+            if (array.includes(item)) return true;
         }
+        // if (cheeses) {
+        //     if (cheeses.indexOf(',') > -1) {
+        //         let arr = cheeses.split(",");
+        //         for (let i = 0; i < chosenCheese.length; i++) {
+        //             if (arr.includes(chosenCheese[i]))
+        //                 return true;
+        //         }
+        //     } else if (chosenCheese.includes(cheeses)) return true;
+        // }
+        
+        
         return false;
     }
 
-    const checkSauce = (sauces) => {
-        let arr = sauces.split(",");
-        for (let i = 0; i < chosenSauce.length; i++) {
-            if (sauces.includes(chosenSauce[i]))
-                return true;
+    const checkSauce = (array) => {
+        for (let i = 0; i < chosenSauce.length; i++){
+            const item = chosenProtein[i];
+            if (array.includes(item)) return true;
         }
+        // if (sauces) {
+        //     if (sauces.indexOf(',') > -1) {
+        //         let arr = sauces.split(",");
+        //         for (let i = 0; i < chosenSauce.length; i++) {
+        //             if (arr.includes(chosenSauce[i]))
+        //                 return true;
+        //         }
+        //     } else if (chosenSauce.includes(sauces)) return true;
+        // }
+        
         return false;
     }
 
-    const checkIngredients = (protein, cheeses, sauces) => {
-        if (checkProtein(protein) && checkCheese(cheeses) && checkSauce(sauces))
-            return true;
-        return false;
-    }
+    // const checkIngredients = (protein, cheeses, sauces) => {
+    //     if (checkProtein(protein) && checkCheese(cheeses) && checkSauce(sauces))
+    //         return true;
+    //     return false;
+    // }
 
     const getData = () => {
         let query = db.ref('sandwiches').orderByKey();
         query.once('value')
           .then((snapshot) => {
               snapshot.forEach((childSnapshot) => {
-              const key = childSnapshot.key;
+                  const key = childSnapshot.key;
                   const childData = childSnapshot.val();
-                    
-                //   if (checkIngredients(childData['protein'], childData['cheese'], childData['sauce'])) {
-                //       console.log("yes");
-                //       setValue([...value, key]);
-                  // }
-                  if (checkProtein(childData['protein']) && ((checkCheese(childData['cheese']) || checkSauce(childData['sauce']))) ) {
-                      console.log(key)
-                      if (!value.includes(key)) setValue([...value, key]);
-                }
 
-                
+                  let arr = childData.split(',');
+                  let objects = []
+                    
+                  if (checkProtein(arr) && (checkCheese(arr) || checkSauce(arr))) {
+                      console.log(key);
+                    //   objects.push({ name: key, ingredients: arr });
+                      if (!value.includes(key)) setValue([...value, key]);
+                  }
+                //   if (checkProtein(childData['protein']) && (checkCheese(childData['cheese']) || checkSauce(childData['sauce'])) ) {
+                //       console.log(key)
+                //       if (!value.includes(key)) setValue([...value, key]);
+                // }
           })
         })
       }
@@ -74,8 +102,7 @@ const Sandos = ( {preferenceList, chosenProtein, chosenCheese, chosenSauce} ) =>
         // console.log(preferenceList);
         getData();
         // console.log(preferenceList)
-        console.log(value);
-    }, [chosenProtein, chosenCheese, chosenSauce])
+    }, [chosenProtein,chosenCheese,chosenSauce])
 
     return (
         <Division>

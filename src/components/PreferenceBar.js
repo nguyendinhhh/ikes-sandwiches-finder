@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 
-const PreferenceBar = ( { preferenceList, setPreferenceList, chosenProtein, chosenCheese, chosenSauce } ) => {
+const PreferenceBar = ( {preferences, setPreferences, preferenceList, setPreferenceList, chosenProtein, chosenCheese, chosenSauce } ) => {
     // const [fixedPosition, setFixedPosition] = useState(true);
     // console.log(preferenceList);
 
@@ -13,11 +13,26 @@ const PreferenceBar = ( { preferenceList, setPreferenceList, chosenProtein, chos
         tempState.protein = chosenProtein;
         tempState.cheeses = chosenCheese;
         tempState.sauces = chosenSauce;
-        setPreferenceList(tempState);
+        setPreferenceList(tempState); // include an object of arrays
+
+        for (let i = 0; i < chosenProtein.length; i++) {
+            const item = chosenProtein[i];
+            if (!preferences.includes(item)) setPreferences([...preferences, item]);
+        }
+        for (let i = 0; i < chosenCheese.length; i++) {
+            const item = chosenCheese[i];
+            if (!preferences.includes(item)) setPreferences([...preferences, item]);
+        }
+        for (let i = 0; i < chosenSauce.length; i++) {
+            const item = chosenSauce[i];
+            if (!preferences.includes(item)) setPreferences([...preferences, item]);
+        }
+
       }
     
     useEffect(() => {
-    getPreference();
+        getPreference();
+        
     // console.log(preferenceList);
     }, [chosenProtein, chosenCheese, chosenSauce])
 
@@ -30,12 +45,17 @@ const PreferenceBar = ( { preferenceList, setPreferenceList, chosenProtein, chos
     return (
         // <List fixed={fixedPosition}>
         <List>
-            <Button onClick={buttonShowHandler}>{show ? 'Close list' : 'Show list'}</Button>
+            <div style={{ display: 'flex', padding: '1rem', flexDirection:'row'}}>
+                {preferences.map((item) => {
+                    return <Option>{item}</Option>
+                })}
+            </div>
+            {/* <Button onClick={buttonShowHandler}>{show ? 'Close list' : 'Show list'}</Button>
             {show ? <div>
                 {preferenceList.protein.map((item) => { return <p>{item}</p>})}
                 {preferenceList.cheeses.map((item) => { return <p>{item}</p>})}
                 {preferenceList.sauces.map((item) => { return <p>{item}</p>})}
-            </div> : null}
+            </div> : null} */}
         </List>
     )
 }
@@ -45,12 +65,27 @@ const List = styled.div`
     flex-direction: row;
     z-index: 1;
     position: fixed;
-    top: 0;
+    bottom: 0;
+    background: #9932CC;
+    width: 100%;
+    height: 5rem;
+    color: white;
+    overflow: contain;
     // ${props => props.fixed && css`
     // position: fixed;
     // top: 0;
     // `}
 `;
+
+const Option = styled.button`
+    font-size: 0.75em;
+    padding: 0.25em 1em;
+    margin: 0.25em;
+    border: none;
+    border-radius: 3px;
+    // height: 40px;
+`;
+
 
 const Button = styled.button`
 font-size: 1em;
@@ -66,7 +101,5 @@ width: 100px;
     color: white
 }
 `;
-
-
 
 export default PreferenceBar;

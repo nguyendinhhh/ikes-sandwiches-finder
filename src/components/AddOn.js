@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+// import { Link } from 'react-scroll';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../backend/config';
 
@@ -10,8 +10,13 @@ const Division = styled.div`
         justify-content: center;
         align-items: center;
         // min-height: 100vh;
-        height: 30vh;
+        // height: 30vh;
+        margin-top: 3rem;
         min-width: 100vw;
+
+        @media screen and (max-width: 400px){
+            margin-bottom: 8rem;
+        }
     `;
 
     const Option = styled.button`
@@ -59,11 +64,9 @@ const AddOn = ( { chosenAddOn, setChosenAddOn } ) => {
                 }}>Choose your add-on(s)</h2>
                 <div style={{margin: '1em', width:'70%'}}>
                     {addOnList.map((item, i) => {
-                        // console.log(item);
                         return <Option
                             key={item.id}
                             name={item.name}
-                            // clicked={clicked}
                             onClick={()=> chooseAddOnHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}

@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+// import { Link } from 'react-scroll';
 import { v4 as uuidv4 } from 'uuid';
 import { db } from '../backend/config';
 
@@ -10,7 +10,8 @@ const Division = styled.div`
         justify-content: center;
         align-items: center;
         // min-height: 100vh;
-        height: 30vh;
+        // height: 30vh;
+        margin-top: 3rem;
         min-width: 100vw;
     `;
 
@@ -49,13 +50,9 @@ const Cheese = ( { chosenCheese, setChosenCheese } ) => {
 
     const chooseCheeseHandler = (name, id) => {
         if (!chosenCheese.includes(name)) setChosenCheese([...chosenCheese, name]);
-
-        // console.log(chosenCheese.length + 1); // see reason why @ https://stackoverflow.com/questions/61081227/my-array-is-not-empty-but-array-length-returns-0
-        if ((chosenCheese.length + 1) > 3) {
-            // something in here
-        }
-
-    
+        // if ((chosenCheese.length + 1) > 3) {
+        //     // something in here
+        // }
     }
     
     return (
@@ -66,11 +63,9 @@ const Cheese = ( { chosenCheese, setChosenCheese } ) => {
                 }}>Choose your cheese(s)</h2>
                 <div style={{margin: '1em', width:'70%'}}>
                     {cheeseList.map((item, i) => {
-                        // console.log(item);
                         return <Option
                             key={item.id}
                             name={item.name}
-                            // clicked={clicked}
                             onClick={()=> chooseCheeseHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}

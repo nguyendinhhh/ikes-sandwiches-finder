@@ -63,16 +63,20 @@ function App() {
         <GlobalStyle />
         <div style={{
           width: '100%',
-          height: '30vh',
+          // height: '30vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          margin: '1rem'
         }}>
-          <h1 style={{
+          <h1 className="big-title" style={{
             color: 'yellow',
             fontSize: '3rem',
+            marginLeft: '1rem',
+            marginRight: '1rem',
             marginTop: '5rem',
+            textAlign:'center',
           }}>Ike's Sandwiches Finder</h1>
           <div className="description" style={{
             position: 'relative',

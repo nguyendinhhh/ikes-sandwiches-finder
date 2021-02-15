@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // components
-// import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'; // icons
 
 const PreferenceBar = ({
     preferences,
@@ -20,7 +18,6 @@ const PreferenceBar = ({
     setValue,
     findSando,
     setFindSando}) => {
-    // const [fixedPosition, setFixedPosition] = useState(true);
 
     const [show, setShow] = useState(false);
 
@@ -55,17 +52,15 @@ const PreferenceBar = ({
     useEffect(() => {
         
         getPreference();
-        // if (chosenProtein.length > 0 && (chosenCheese.length > 0 || chosenSauce.length > 0 || chosenAddOn.length > 0)) {
         if (value.length > 0){    
             setDisabled(false);
         } else setDisabled(true);
         
-    // console.log(preferenceList);
     }, [chosenProtein, chosenCheese, chosenSauce, chosenAddOn, value])
 
     useEffect(() => {
         preferences.length > 0 ? setShow(true) : setShow(false);
-    }, [preferences]) // fix this later, only show when there are sandwiches found in the values[]
+    }, [preferences]) 
     
     const removeClickHandler = (item) => {
         setValue([]);
@@ -151,7 +146,7 @@ const List = styled.div`
 
 const Option = styled.button`
     font-size: 1em;
-    padding: 0.25em 1em;
+    padding: 0.5em 1em;
     margin: 0.25em;
     margin-top: 1em;
     border: none;
@@ -209,8 +204,7 @@ border: none;
 border-radius: 50px;
 width: 15rem;
 align-self: center;
-// background: yellow;
-// background: #F9A12D;
+
 box-shadow: 1px 1px 1px black;
 // height: 40px;
 // width: 100px;
@@ -220,5 +214,7 @@ box-shadow: 1px 1px 1px black;
     background: grey;
     // color: white;
 }
+
+
 `;
 export default PreferenceBar;

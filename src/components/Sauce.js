@@ -10,7 +10,8 @@ const Division = styled.div`
         justify-content: center;
         align-items: center;
         // min-height: 100vh;
-        height: 30vh;
+        // height: 30vh;
+        margin-top: 3rem;
         min-width: 100vw;
     `;
 
@@ -58,11 +59,9 @@ const Sauce = ( { chosenSauce, setChosenSauce } ) => {
             }}>Choose your sauce(s)</h2>
             <div style={{margin: '1em', width:'70%'}}>
                 {sauceList.map((item, i) => {
-                    // console.log(item);
                     return <Option
                         key={item.id}
                         name={item.name}
-                        // clicked={clicked}
                         onClick={()=> chooseSauceHandler(item.name, item.id)}
                     >{item.name}</Option>
                 })}

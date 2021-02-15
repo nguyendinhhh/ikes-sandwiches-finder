@@ -1,6 +1,6 @@
 import React , {useState} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+// import { Link } from 'react-scroll';
 
 
 const Division = styled.div`
@@ -10,7 +10,8 @@ const Division = styled.div`
         align-items: center;
 
         // min-height: 100vh;
-        height: 30vh;
+        // height: 30vh;
+        margin-top: 3rem;
         min-width: 100vw;
     `;
 
@@ -31,8 +32,6 @@ const Protein = ( { proteinList, chosenProtein, setChosenProtein, proteinType, s
     
     const chooseProteinHandler = (name, id) => {
         if (!chosenProtein.includes(name)) setChosenProtein([...chosenProtein, name]);
-
-        // setChosenProtein(name);
     }
     
     return (
@@ -44,7 +43,6 @@ const Protein = ( { proteinList, chosenProtein, setChosenProtein, proteinType, s
             }}>Choose your protein(s)</h2>
             {proteinList.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
                     {proteinList.map((item) => {
-                        // console.log(item);
                         return <Option
                             key={item.id}
                             name={item.name}

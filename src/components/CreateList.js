@@ -9,8 +9,9 @@ const Division = styled.div`
         justify-content: center;
         align-items: center;
         // min-height: 100vh;
-        height: 30vh;
+        // height: 30vh;
         min-width: 100vw;
+        margin-top: 3rem;
     `;
 
     const Option = styled.button`
@@ -36,21 +37,12 @@ const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType })
             setProteinType('meat');
             try {
                 db.ref('types-of-protein').on('value', (snapshot) => {
-                    // console.log(snapshot.val()['main-veggies']);
                     let arr = snapshot.val()['meat'].split(",");
-                    // console.log(arr);
-                    // setProteinList([]);
-                    // setProteinList(arr)
                     let objects = [];
                     for (const item of arr) {
                         objects.push({ name: item, id: uuidv4() });
                     }
                     setProteinList(objects);
-                    // for (const item of arr) {
-                    //     proteinList.push({ name: item, id: uuidv4() });
-                    // }
-                    // console.log(proteinList);
-                    
                 })
             } catch (error) {
                 console.log("Couldn't submit the meat list yo");
@@ -59,18 +51,12 @@ const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType })
             setProteinType('veggie');
             try {
                 db.ref('types-of-protein').on('value', (snapshot) => {
-                    // console.log(snapshot.val()['main-veggies']);
                     let arr = snapshot.val()['veggie'].split(",");
                     let objects = [];
                     for (const item of arr) {
                         objects.push({ name: item, id: uuidv4() });
                     }
                     setProteinList(objects);
-                    // console.log(arr);
-                    // setProteinList(arr);
-                    // for (const item of arr) {
-                    //     proteinList.push({ name: item, id: uuidv4() });
-                    // }
                 })
             } catch (error) {
                 console.log("Couldn't submit the veggie list yo");
@@ -85,6 +71,7 @@ const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType })
                 <h2 style={{
                     color: 'yellow',
                     fontSize: '2rem',
+                    textAlign: 'center'
                 }}>Choose your type of sandwich</h2>
                 <div style={{margin: '1em', width:'70%', display:'flex',justifyContent:'center'}}>
                     <Option value="meat" onClick={e => submitProteinList(e, "value")}>Meat</Option>

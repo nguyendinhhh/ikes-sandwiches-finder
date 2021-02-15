@@ -151,6 +151,8 @@ const Option = styled.button`
     margin-top: 1em;
     border: none;
     border-radius: 3px;
+    box-shadow: 1px 1px 1px black;
+    background: white;
     // height: 40px;
 
     @media screen and (max-width: 760px) {
@@ -204,7 +206,7 @@ border: none;
 border-radius: 50px;
 width: 15rem;
 align-self: center;
-
+background: white;
 box-shadow: 1px 1px 1px black;
 // height: 40px;
 // width: 100px;

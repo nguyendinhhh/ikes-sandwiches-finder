@@ -8,8 +8,9 @@ const Division = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // background-color: blue;
-        min-height: 100vh;
+
+        // min-height: 100vh;
+        height: 30vh;
         min-width: 100vw;
     `;
 
@@ -19,27 +20,29 @@ const Division = styled.div`
         margin: 0.25em;
         border: none;
         border-radius: 3px;
-
+        background: #FF1493;
+        color: white;
         &:hover {
             background: #F3AC0A;
         }
     `;
     
-const Protein = ( { proteinList, chosenProtein, setChosenProtein } ) => {
+const Protein = ( { proteinList, chosenProtein, setChosenProtein, proteinType, setProteinType } ) => {
     
     const chooseProteinHandler = (name, id) => {
         if (!chosenProtein.includes(name)) setChosenProtein([...chosenProtein, name]);
+
         // setChosenProtein(name);
     }
     
     return (
             <Division id="protein">
                 <h2 style={{
-                    color: 'white',
+                    color: 'yellow',
                     fontSize: '2rem',
                     textAlign: 'center',
-            }}>{proteinList.length > 0 ? 'Choose your protein' : 'Scroll up and choose your preference first!'}</h2>
-                <div style={{margin: '1em'}}>
+            }}>Choose your protein(s)</h2>
+            {proteinList.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
                     {proteinList.map((item) => {
                         // console.log(item);
                         return <Option
@@ -48,7 +51,8 @@ const Protein = ( { proteinList, chosenProtein, setChosenProtein } ) => {
                             onClick={()=> chooseProteinHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}
-                </div>
+                </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your preference first!</p>}
+                
                 
             </Division>
     )

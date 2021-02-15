@@ -9,8 +9,8 @@ const Division = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        // background-color: blue;
-        min-height: 100vh;
+        // min-height: 100vh;
+        height: 30vh;
         min-width: 100vw;
     `;
 
@@ -20,7 +20,8 @@ const Division = styled.div`
         margin: 0.25em;
         border: none;
         border-radius: 3px;
-        
+        background: #FF1493;
+        color: white;
         &:hover {
             background: #F3AC0A;
         }
@@ -52,10 +53,10 @@ const Sauce = ( { chosenSauce, setChosenSauce } ) => {
     return (
         <Division id="sauce">
             <h2 style={{
-                color: 'white',
+                color: 'yellow',
                 fontSize: '2rem',
             }}>Choose your sauce(s)</h2>
-            <div style={{margin: '1em'}}>
+            <div style={{margin: '1em', width:'70%'}}>
                 {sauceList.map((item, i) => {
                     // console.log(item);
                     return <Option

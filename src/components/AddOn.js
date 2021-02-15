@@ -27,51 +27,44 @@ const Division = styled.div`
         }
     `;
 
-const Cheese = ( { chosenCheese, setChosenCheese } ) => {
+const AddOn = ( { chosenAddOn, setChosenAddOn } ) => {
 
-    const [cheeseList, setCheeseList] = useState([]);
+    const [addOnList, setAddOnList] = useState([]);
     
 
-    const getCheese = () => {
-        db.ref('types-of-cheese').on('value', (snapshot) => {
-            let arr = snapshot.val().split(",");
+    const getAddOn = () => {
+        db.ref('add-ons').on('value', (snapshot) => {
+            let arr = snapshot.val()['others'].split(",");
             let objects = [];
             for (const item of arr) {
                 objects.push({ name: item, id: uuidv4() });
             }
-            setCheeseList(objects);
+            setAddOnList(objects);
         });
     }
 
     useEffect(() => {
-        getCheese();
+        getAddOn();
     }, []);
 
-    const chooseCheeseHandler = (name, id) => {
-        if (!chosenCheese.includes(name)) setChosenCheese([...chosenCheese, name]);
-
-        // console.log(chosenCheese.length + 1); // see reason why @ https://stackoverflow.com/questions/61081227/my-array-is-not-empty-but-array-length-returns-0
-        if ((chosenCheese.length + 1) > 3) {
-            // something in here
-        }
-
-    
+    const chooseAddOnHandler = (name, id) => {
+        if (!chosenAddOn.includes(name)) setChosenAddOn([...chosenAddOn, name]);
     }
     
     return (
-            <Division id="cheese">
+            <Division id="add-on">
                 <h2 style={{
                     color: 'yellow',
                     fontSize: '2rem',
-                }}>Choose your cheese(s)</h2>
+                }}>Choose your add-on(s)</h2>
                 <div style={{margin: '1em', width:'70%'}}>
-                    {cheeseList.map((item, i) => {
+                    {addOnList.map((item, i) => {
                         // console.log(item);
                         return <Option
                             key={item.id}
                             name={item.name}
                             // clicked={clicked}
-                            onClick={()=> chooseCheeseHandler(item.name, item.id)}
+                            onClick={()=> chooseAddOnHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}
                 </div>
@@ -80,4 +73,4 @@ const Cheese = ( { chosenCheese, setChosenCheese } ) => {
     )
 }
 
-export default Cheese;
+export default AddOn;

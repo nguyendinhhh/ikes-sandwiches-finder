@@ -8,6 +8,8 @@ import Sauce from './components/Sauce';
 import styled, { createGlobalStyle } from 'styled-components';
 import PreferenceBar from './components/PreferenceBar';
 import Sandos from './components/Sandos';
+import AddOn from './components/AddOn';
+import Footer from './components/Footer';
 
 const GlobalStyle = createGlobalStyle`
     h1,h2,h3, body {
@@ -16,7 +18,9 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
   const Slider = styled.div`
-    background: linear-gradient(to top, #e66465, #9198e5);
+    // background: linear-gradient(to top, #e66465, #9198e5);
+
+    background: #722395;
     height: 100%;
     width: 100%;
     display: flex;
@@ -28,12 +32,12 @@ const GlobalStyle = createGlobalStyle`
 function App() {
 
   const [proteinList, setProteinList] = useState([]);
-
+  const [proteinType, setProteinType] = useState('');
 
   const [chosenCheese, setChosenCheese] = useState([]);
   const [chosenProtein, setChosenProtein] = useState([]);
   const [chosenSauce, setChosenSauce] = useState([]);
-
+  const [chosenAddOn, setChosenAddOn] = useState([]);
 
   const [preferenceList, setPreferenceList] = useState({
     protein: [],
@@ -44,67 +48,64 @@ function App() {
   const [preferences, setPreferences] = useState([]);
 
 
+  const [value, setValue] = useState([]);
 
-  // const [data, setData] = useState([]);
-  // const [testData, setTestData] = useState([]);
-
-  // const getJsonData = () => {
-  //   fetch('./backend/data.json', {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept' : 'application/json',
-  //     }
-  //   }).then(function (response) {
-  //     console.log(response);
-  //     return response.json();
-  //   }).then((myJson) => {
-  //     console.log(myJson);
-  //     setTestData(myJson);
-  //   })
-  // }
-
-  // const getData = () => {
-  //   db.ref('add-ons').on('value', (snapshot) => {
-  //     // console.log(snapshot.val()['main-veggies']);
-  //     let arr = snapshot.val()['main-veggies'].split(",");
-  //     // arr.forEach(element => {
-  //     //   setData([...element]);
-  //     // });
-  //     // setData(arr);
-  //     // console.log(data)
-
-  //     // console.log(arr);
-  //   })
-      
-  // };
-
-  
-  // useEffect(() => {
-  //   getData();
-  // },[])
+  const [findSando, setFindSando] = useState(false);
 
 
   return (
     <>
       <Slider>
         <GlobalStyle />
+        <div style={{
+          width: '100%',
+          height: '30vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <h1 style={{
+            color: 'yellow',
+            fontSize: '3rem',
+            marginTop: '5rem',
+          }}>Ike's Sandwiches Finder</h1>
+          <div className="description" style={{
+            position: 'relative',
+            width: '80%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <p style={{color: 'yellow', textAlign: 'center'}}>This product may not show enough sandwiches as it is still in the developmental phase. <br></br>Sando Recommendo (Ike's Sandwiches Finder) is the intellectual property of Nguyen Dinh</p>
+          </div>
+        </div>
         <PreferenceBar
           preferences={preferences}
           setPreferences={setPreferences}
           preferenceList={preferenceList}
           setPreferenceList={setPreferenceList}
-          chosenProtein={chosenProtein}
-          chosenCheese={chosenCheese}
-          chosenSauce={chosenSauce}
+          chosenProtein={chosenProtein} setChosenProtein={setChosenProtein}
+          chosenCheese={chosenCheese} setChosenCheese={setChosenCheese}
+          chosenSauce={chosenSauce} setChosenSauce={setChosenSauce}
+          chosenAddOn={chosenAddOn} setChosenAddOn={setChosenAddOn}
+          value={value}
+          setValue={setValue}
+          findSando={findSando}
+          setFindSando={setFindSando}
         />
         <CreateList
           proteinList={proteinList}
           setProteinList={setProteinList}
+          proteinType={proteinType}
+          setProteinType={setProteinType}
         />
         <Protein
           proteinList={proteinList}
           chosenProtein={chosenProtein}
           setChosenProtein={setChosenProtein}
+          proteinType={proteinType}
+          setProteinType={setProteinType}
         />
         <Cheese
           chosenCheese={chosenCheese}
@@ -114,12 +115,25 @@ function App() {
           chosenSauce={chosenSauce}
           setChosenSauce={setChosenSauce}
         />
+        <AddOn
+          chosenAddOn={chosenAddOn}
+          setChosenAddOn={setChosenAddOn}
+        />
         <Sandos
           preferenceList={preferenceList}
+          preferences={preferences}
           chosenProtein={chosenProtein}
           chosenCheese={chosenCheese}
           chosenSauce={chosenSauce}
+          chosenAddOn={chosenAddOn}
+          value={value}
+          setValue={setValue}
+          findSando={findSando}
+          setFindSando={setFindSando}
+          proteinType={proteinType}
+          setProteinType={setProteinType}
         />
+        <Footer />
         </Slider>
       </>
   );

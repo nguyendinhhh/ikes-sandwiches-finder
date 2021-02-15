@@ -10,6 +10,7 @@ import PreferenceBar from './components/PreferenceBar';
 import Sandos from './components/Sandos';
 import AddOn from './components/AddOn';
 import Footer from './components/Footer';
+import myImage from './images/background1.jpg';
 
 const GlobalStyle = createGlobalStyle`
     h1,h2,h3, body {
@@ -20,13 +21,16 @@ const GlobalStyle = createGlobalStyle`
   const Slider = styled.div`
     // background: linear-gradient(to top, #e66465, #9198e5);
 
-    background: #722395;
+    // background: #722395;
+    background-image: url(${myImage});
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    
   `;
   
 function App() {

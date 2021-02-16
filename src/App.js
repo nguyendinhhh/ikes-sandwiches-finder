@@ -118,14 +118,17 @@ function App() {
         <Cheese
           chosenCheese={chosenCheese}
           setChosenCheese={setChosenCheese}
+          proteinList={proteinList}
         />
         <Sauce
           chosenSauce={chosenSauce}
           setChosenSauce={setChosenSauce}
+          proteinList={proteinList}
         />
         <AddOn
           chosenAddOn={chosenAddOn}
           setChosenAddOn={setChosenAddOn}
+          proteinList={setProteinList}
         />
         <Sandos
           preferenceList={preferenceList}

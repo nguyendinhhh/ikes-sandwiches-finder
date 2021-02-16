@@ -13,6 +13,7 @@ const Division = styled.div`
         // height: 30vh;
         margin-top: 3rem;
         min-width: 100vw;
+        margin-bottom: 7rem;
 
         @media screen and (max-width: 400px){
             margin-bottom: 8rem;
@@ -32,7 +33,7 @@ const Division = styled.div`
         }
     `;
 
-const AddOn = ( { chosenAddOn, setChosenAddOn } ) => {
+const AddOn = ( { chosenAddOn, setChosenAddOn, proteinList } ) => {
 
     const [addOnList, setAddOnList] = useState([]);
     

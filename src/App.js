@@ -101,6 +101,7 @@ function App() {
           setValue={setValue}
           findSando={findSando}
           setFindSando={setFindSando}
+          proteinList={proteinList}
         />
         <CreateList
           proteinList={proteinList}

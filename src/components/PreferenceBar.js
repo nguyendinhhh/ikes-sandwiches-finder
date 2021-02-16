@@ -17,7 +17,8 @@ const PreferenceBar = ({
     value,
     setValue,
     findSando,
-    setFindSando}) => {
+    setFindSando,
+    proteinList}) => {
 
     const [show, setShow] = useState(false);
 
@@ -61,6 +62,10 @@ const PreferenceBar = ({
     useEffect(() => {
         preferences.length > 0 ? setShow(true) : setShow(false);
     }, [preferences]) 
+
+    useEffect(() => {
+        clearPreference();
+    },[proteinList])
     
     const removeClickHandler = (item) => {
         setValue([]);

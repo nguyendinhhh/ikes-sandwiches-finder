@@ -113,7 +113,7 @@ const PreferenceBar = ({
                 })}
                 </div>
             <div style={{display:'flex',width:'100%',flexDirection:'row',justifyContent:'center'}}>
-                    <ClearButton onClick={() => clearPreference()}>Clear all preferences</ClearButton>
+                    <ClearButton onClick={() => clearPreference()}>Clear</ClearButton>
                 <Button disabled={disabled} onClick={() => setFindSando(true)}>{disabled ? 'Could not find any sandos!' : `Found ${value.length} sandwiches!`}</Button>
             </div>
             
@@ -204,7 +204,7 @@ padding: 0.5em 1em;
 margin: 0.25em;
 border: none;
 border-radius: 50px;
-width: 15rem;
+// width: 15rem;
 align-self: center;
 background: white;
 box-shadow: 1px 1px 1px black;

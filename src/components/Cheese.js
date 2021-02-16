@@ -28,7 +28,7 @@ const Division = styled.div`
         }
     `;
 
-const Cheese = ( { chosenCheese, setChosenCheese, chosenProtein } ) => {
+const Cheese = ( { chosenCheese, setChosenCheese, proteinList } ) => {
 
     const [cheeseList, setCheeseList] = useState([]);
     
@@ -61,7 +61,7 @@ const Cheese = ( { chosenCheese, setChosenCheese, chosenProtein } ) => {
                     color: 'yellow',
                     fontSize: '2rem',
                 }}>Choose your cheese(s)</h2>
-                {chosenProtein.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
+                {proteinList.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
                     {cheeseList.map((item, i) => {
                         return <Option
                             key={item.id}
@@ -69,7 +69,7 @@ const Cheese = ( { chosenCheese, setChosenCheese, chosenProtein } ) => {
                             onClick={()=> chooseCheeseHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}
-                </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your protein first!</p>}
+                </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your preference first!</p>}
                 
                 
             </Division>

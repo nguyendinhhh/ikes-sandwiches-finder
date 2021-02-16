@@ -33,7 +33,7 @@ const Division = styled.div`
         }
     `;
 
-const AddOn = ( { chosenAddOn, setChosenAddOn, chosenProtein } ) => {
+const AddOn = ( { chosenAddOn, setChosenAddOn, proteinList } ) => {
 
     const [addOnList, setAddOnList] = useState([]);
     
@@ -63,7 +63,7 @@ const AddOn = ( { chosenAddOn, setChosenAddOn, chosenProtein } ) => {
                     color: 'yellow',
                     fontSize: '2rem',
             }}>Choose your add-on(s)</h2>
-            {chosenProtein.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
+            {proteinList.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
                     {addOnList.map((item, i) => {
                         return <Option
                             key={item.id}
@@ -71,7 +71,7 @@ const AddOn = ( { chosenAddOn, setChosenAddOn, chosenProtein } ) => {
                             onClick={()=> chooseAddOnHandler(item.name, item.id)}
                         >{item.name}</Option>
                     })}
-                </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your protein first!</p>}
+                </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your preference first!</p>}
                 
                 
             </Division>

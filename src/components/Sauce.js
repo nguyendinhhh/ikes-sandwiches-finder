@@ -28,7 +28,7 @@ const Division = styled.div`
         }
     `;
 
-const Sauce = ( { chosenSauce, setChosenSauce } ) => {
+const Sauce = ( { chosenSauce, setChosenSauce, chosenProtein } ) => {
     
     const [sauceList, setSauceList] = useState([]);
 
@@ -57,7 +57,7 @@ const Sauce = ( { chosenSauce, setChosenSauce } ) => {
                 color: 'yellow',
                 fontSize: '2rem',
             }}>Choose your sauce(s)</h2>
-            <div style={{margin: '1em', width:'70%'}}>
+            {chosenProtein.length > 0 ? <div style={{margin: '1em', width:'70%'}}>
                 {sauceList.map((item, i) => {
                     return <Option
                         key={item.id}
@@ -65,7 +65,9 @@ const Sauce = ( { chosenSauce, setChosenSauce } ) => {
                         onClick={()=> chooseSauceHandler(item.name, item.id)}
                     >{item.name}</Option>
                 })}
-            </div>
+            </div> : <p style={{margin: '0.5em', fontWeight: 'bold', color: 'white'}}>Scroll up and choose your protein first!</p>}
+                
+            
             
         </Division>
     )

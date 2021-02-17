@@ -68,7 +68,7 @@ const Sandos = ({
     }
 
     const getData = () => {
-        let query = db.ref('sandwiches').orderByKey();
+        let query = db.ref('sandos').orderByKey();
         query.once('value')
             .then((snapshot) => {
                 let objects = []
@@ -78,7 +78,8 @@ const Sandos = ({
 
                     let arr = childData.split(',');
                     
-                    if (proteinType === arr[1]) {
+                    if (proteinType === arr[2]) {
+                        let tempArr = arr.slice(3);
                         if (checkProtein(arr)) {
                             if (chosenCheese.length > 0 || chosenSauce.length > 0 || chosenAddOn.length > 0) {
                                 let side = []
@@ -93,12 +94,12 @@ const Sandos = ({
                                     side.push(chosenAddOn[i]);
                                 }
                                 
-                                let tempArr = arr.slice(2);
+                                
                                 
                                 if (checker(tempArr, side)) {
-                                    if (!objects.some(i => i.name === key)) { objects.push({ name: key, number: arr[0], ingredients: arr.slice(2).join(', ') }) }
+                                    if (!objects.some(i => i.name === arr[1])) { objects.push({ name: arr[1], number: arr[0], ingredients: tempArr.join(', ') }) }
                                 }
-                            } else if (!objects.some(i => i.name === key)) { objects.push({ name: key, number: arr[0], ingredients: arr.slice(2).join(', ') }) }
+                            } else if (!objects.some(i => i.name === arr[1])) { objects.push({ name: arr[1], number: arr[0], ingredients: tempArr.join(', ') }) }
                 
                         }
                     }

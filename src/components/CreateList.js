@@ -29,11 +29,15 @@ const Division = styled.div`
 
 const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType }) => {
 
-    
+    const [meatClicked, setMeatClicked] = useState(false);
+    const [veggieClicked, setVeggieClicked] = useState(false);
+
     const submitProteinList = (e) => {
         e.preventDefault();
 
         if (e.target.value === 'meat') {
+            setMeatClicked(true);
+            if (veggieClicked) setVeggieClicked(!veggieClicked);
             setProteinType('meat');
             try {
                 db.ref('types-of-protein').on('value', (snapshot) => {
@@ -48,6 +52,8 @@ const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType })
                 console.log("Couldn't submit the meat list yo");
             }
         } else if (e.target.value === 'veggie') {
+            setVeggieClicked(true);
+            if (meatClicked) setMeatClicked(!meatClicked);
             setProteinType('veggie');
             try {
                 db.ref('types-of-protein').on('value', (snapshot) => {
@@ -74,8 +80,8 @@ const CreateList = ({ proteinList, setProteinList, proteinType,setProteinType })
                     textAlign: 'center'
                 }}>Choose your type of sandwich</h2>
                 <div style={{margin: '1em', width:'70%', display:'flex',justifyContent:'center'}}>
-                    <Option value="meat" onClick={e => submitProteinList(e, "value")}>Meat</Option>
-                    <Option value="veggie" onClick={e => submitProteinList(e, "value")}>Veggie</Option>
+                    <Option style={ meatClicked ? {background: 'grey', color: 'whitesmoke'} : null} value="meat" onClick={e => submitProteinList(e, "value")}>Meat</Option>
+                    <Option style={ veggieClicked ? {background: 'grey', color: 'whitesmoke'} : null} value="veggie" onClick={e => submitProteinList(e, "value")}>Veggie</Option>
                 </div>
                 
             </Division>
